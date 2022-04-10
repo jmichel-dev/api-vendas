@@ -2,8 +2,8 @@ import CustomersRepository from '@modules/customers/typeorm/repositories/Custome
 import { ProductRepository } from '@modules/products/typeorm/repositories/ProductsRepository';
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
-import Order from '../entities/Order';
-import OrdersRepository from '../repositories/OrdersRepository';
+import Order from '../typeorm/entities/Order';
+import OrdersRepository from '../typeorm/repositories/OrdersRepository';
 
 interface IProduct {
   id: string;
@@ -73,7 +73,7 @@ export default class CreateOrderService {
     const updatedProductQuantity = order_products.map(product => ({
       id: product.id,
       quantity:
-        existsProducts.filter(p => p.id === product.id)[0].quantity -
+        existsProducts.filter(p => p.id === product.product_id)[0].quantity -
         product.quantity,
     }));
 
