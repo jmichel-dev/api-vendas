@@ -10,11 +10,14 @@ import routes from '@shared/http/routes/';
 import AppError from '@shared/errors/AppError';
 import uploadConfig from '@config/upload';
 import '@shared/typeorm';
+import rateLimiter from './middlewares/rateLimiter';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(rateLimiter);
 
 app.use(pagination);
 
